@@ -1,0 +1,61 @@
+
+<div class="container well">
+
+    <!--Step1-->
+    <div>
+
+      <h1>Get Event Tickets</h1>
+
+      <form class="col-lg-6">
+        <div class="form-group">
+          <label>Event ID</label>
+          <input class="form-control" type="text" name="eventId">
+        </div>
+
+        <div class="form-group">
+            <label>Event-Date ID</label>
+            <input class="form-control" type="text" name="eventdate_Id">
+        </div>
+        
+        <div class="float-right">
+          <button class="btn btn-primary">Get Ticket Info</button>
+        </div>
+
+      </form>
+    </div>
+
+
+
+
+
+    <!--Tickets-->
+    <div> 
+      Tickets :
+      <ul *ngFor="let tickets of eventTickets.tickettypes">
+        <li>{{tickets.tickettype_name}}</li> Available Seats - {{tickets.tickettype_avail_quantity}}
+      </ul>
+    </div>
+
+    <!--Discount-->
+    <div>
+      Discount Available : {{eventTickets.discount_enabled === true ? 'Yes' : 'No'}}
+    </div>
+
+    <!--Payments-->
+    <div>
+      Available Payments : 
+      <ul *ngFor="let payment of eventTickets.payment_options">
+        <form name="#EventPrepareForm">
+          <div>
+              <input type="radio" value="{{payment.paymentoption_id}}"> {{payment.paymentoption_name}}
+          </div>
+        </form>
+      </ul>
+    </div>
+    
+    <!--Create Tickets-->
+    <div>
+      <button (click)="createTicket()">Create Ticket</button>
+    </div>
+</div>
+ 
